@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    localStorage.name ="百知教育"
+    localStorage["age"]=12;
+    localStorage.setItem("bir","2012-12-12")
+    // console.log(localStorage.name)
+    // localStorage.removeItem("name")
+    // console.log(localStorage.name)
+    let age = localStorage.age;
+    let name = localStorage['name'];
+    let bir = localStorage.getItem("bir");
+    console.log(age,name,bir)
+
+    for (let n= 0;n<localStorage.length;n++){
+        console.log(localStorage.key(n)+":",localStorage.getItem(localStorage.key(n)))
+    }
+</script>
+</body>
+</html>

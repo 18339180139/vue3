@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <span>这是页面的表头</span>
+    <router-link to="/index">访问系统首页</router-link>
+    <router-link to="/stu">访问用户页</router-link>
+    <router-view></router-view>
+
+</div>
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+    let first = {
+        template: `
+            <div>跳转穿参
+            <botton @click="goPage">跳转到用户页面</botton>
+            </div>
+        `,
+        methods:{
+            goPage(){
+                // this.$router.push("/stu?id=1")
+                // this.$router.push("/stu/1")
+                this.$router.push({path: "/stu/1"});
+            }
+        }
+    }
+    let second = {
+        template: `
+            <div>用户页面接受到id为-->{{$route.query.id}}
+            <hr>用户页面的path为-->{{$route.path}}/{{$route.query.id}}
+            <hr>用户页面的path为-->{{$route.path}}
+            </div>
+
+        `
+    }
+    let myRouter = new VueRouter({
+        routes: [
+            {path: "/index", component: first},
+            {path: "/stu/:id", component: second},
+            {path: "/",redirect:"/index"}
+        ],
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        router: myRouter,
+    })
+</script>
+
+</body>
+</html>

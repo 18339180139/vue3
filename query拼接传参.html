@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h2>系统欢迎页</h2>
+    <router-link to="/index">访问系统首页</router-link>
+    <router-link to="/user?id=3&name=tom">查看id为2的下一页</router-link>
+    <router-view></router-view>
+
+</div>
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.3.0.1.js"></script>
+<script>
+    let index = {
+        template: `
+            <div>这是组件1
+            <router-link to="/user?id=3&name=tom">查看id为2的下一页</router-link>
+        </div>
+        `
+    }
+    let user = {
+        template: `
+            <div>
+                这是组件2：需要接受组件1first传递过来的id--->：{{ $route.query.id }}
+                <br>
+                这是上个组件传递的用户名--->：{{$route.query.name}}
+            </div>
+        `,
+        data() {
+            return {
+                users: [
+                    {id: 1, username: "小黑", bir: "2012-12-12"},
+                    {id: 2, username: "小白", bir: "2013-12-12"},
+                    {id: 3, username: "小红", bir: "2014-12-12"},
+                ]
+            }
+        }
+    }
+
+    let myRouter = new VueRouter({
+        routes: [
+            {path: "/index", component: index},
+            {path: "/user", component: user}
+        ],
+    })
+    new Vue({
+        el: "#app",
+        data: {},
+        router: myRouter,
+    })
+</script>
+
+</body>
+</html>
